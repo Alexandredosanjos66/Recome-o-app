@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6c63ff">
+<meta name="description" content="Recomeço — uma jornada de autocuidado, autoestima e bem-estar emocional.">
+<title>Recomeço</title>
+<style>
+:root{--bg:#f7f7fb;--card:#fff;--text:#1e2130;--muted:#70758a;--primary:#6c63ff;--primary2:#8a84ff;--soft:#eeedff;--green:#25a56a;--line:#e7e7ef;--danger:#d84b5b;--shadow:0 12px 35px rgba(38,35,80,.09)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea{font:inherit}button{cursor:pointer;border:0}.app{max-width:520px;margin:auto;min-height:100vh;background:var(--bg);padding-bottom:90px}
+.screen{display:none;padding:22px 18px}.screen.active{display:block}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.logo{font-weight:900;font-size:24px;letter-spacing:-.6px}.logo span{color:var(--primary)}
+.iconbtn{width:42px;height:42px;border-radius:14px;background:var(--card);box-shadow:var(--shadow);font-size:19px}
+h1{font-size:29px;line-height:1.08;margin:6px 0 10px;letter-spacing:-.8px}h2{font-size:21px;margin:0 0 10px}h3{font-size:16px;margin:0 0 6px}p{color:var(--muted);line-height:1.5;margin:7px 0}
+.hero{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;border-radius:27px;padding:24px;box-shadow:0 18px 40px rgba(108,99,255,.23);margin-bottom:16px}.hero p{color:#f1f0ff}.hero .small{opacity:.88;font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:17px;margin:12px 0;box-shadow:var(--shadow)}.row{display:flex;gap:10px;align-items:center}.between{justify-content:space-between}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.primary{width:100%;padding:14px 16px;border-radius:15px;background:var(--primary);color:white;font-weight:800}.secondary{padding:12px 14px;border-radius:14px;background:var(--soft);color:var(--primary);font-weight:800}.ghost{background:transparent;color:var(--primary);font-weight:800;padding:8px}
+input,textarea,select{width:100%;border:1px solid var(--line);border-radius:15px;padding:13px;background:#fff;color:var(--text);outline:none}textarea{min-height:120px;resize:vertical}input:focus,textarea:focus{border-color:var(--primary)}
+.mood{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.mood button{padding:12px 4px;border-radius:15px;background:#f5f5fa;font-size:24px}.mood button.sel{background:var(--soft);outline:2px solid var(--primary)}
+.progress{height:10px;background:#ececf4;border-radius:20px;overflow:hidden}.progress>div{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary2));border-radius:20px}
+.tag{font-size:12px;font-weight:800;color:var(--primary);background:var(--soft);padding:6px 9px;border-radius:99px;display:inline-block}.muted{color:var(--muted);font-size:13px}.success{color:var(--green);font-weight:800}.danger{color:var(--danger);font-weight:800}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);height:76px;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:10}.bottom button{background:transparent;color:#818598;font-size:11px;font-weight:700}.bottom button.active{color:var(--primary)}.bottom b{display:block;font-size:20px;margin-bottom:3px}
+.feature{display:flex;gap:12px;align-items:flex-start}.feature .ico{width:43px;height:43px;border-radius:14px;background:var(--soft);display:grid;place-items:center;font-size:21px;flex:none}
+.day{border:1px solid var(--line);border-radius:18px;padding:14px;background:#fff;margin:8px 0}.day.done{border-color:#bce6d0;background:#f4fcf7}.day.lock{opacity:.52}.check{width:36px;height:36px;border-radius:12px;background:var(--soft);color:var(--primary);font-weight:900}.done .check{background:#d9f5e6;color:var(--green)}
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#202334;color:#fff;padding:11px 15px;border-radius:13px;z-index:30;display:none;font-size:13px;box-shadow:var(--shadow)}
+.welcome{min-height:100vh;display:none;padding:34px 22px;flex-direction:column;justify-content:center}.welcome.show{display:flex}.welcome .mark{width:76px;height:76px;border-radius:25px;background:linear-gradient(135deg,var(--primary),var(--primary2));display:grid;place-items:center;color:white;font-size:36px;margin-bottom:20px;box-shadow:0 18px 40px rgba(108,99,255,.24)}
+.avatar{width:58px;height:58px;border-radius:19px;background:var(--soft);display:grid;place-items:center;font-size:25px;font-weight:900;color:var(--primary)}
+.kpi{font-size:25px;font-weight:900}.center{text-align:center}.quote{font-size:18px;line-height:1.45;font-weight:800}
+.hide{display:none!important}@media(min-width:700px){body{padding:20px}.app{border-radius:30px;box-shadow:0 20px 70px rgba(0,0,0,.08);overflow:hidden}}
+</style>
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<section id="welcome" class="welcome">
+  <div class="mark">↻</div>
+  <div class="tag">UM NOVO COMEÇO</div>
+  <h1>Cuida de ti.<br>Um dia de cada vez.</h1>
+  <p>O Recomeço ajuda-te a construir autoestima, hábitos saudáveis e mais consciência emocional através de pequenos passos.</p>
+  <div class="card">
+    <div class="feature"><div class="ico">🛡️</div><div><h3>Privacidade</h3><p class="muted">Os teus dados ficam neste dispositivo nesta versão gratuita.</p></div></div>
+  </div>
+  <button class="primary" onclick="startApp()">Começar a minha jornada</button>
+</section>
+
+<div id="app" class="app hide">
+  <main>
+    <section id="home" class="screen active">
+      <div class="top"><div class="logo">Re<span>começo</span></div><button class="iconbtn" onclick="show('profile')">☺</button></div>
+      <div class="hero">
+        <div class="small">BOM TE VER, <span id="helloName">AMIGO</span> 👋</div>
+        <h1>Hoje também conta.</h1>
+        <p>Não precisas resolver tudo hoje. Escolhe apenas um pequeno passo.</p>
+      </div>
+      <div class="card">
+        <div class="row between"><div><h3>Como estás hoje?</h3><p class="muted">Regista o teu estado emocional.</p></div><span id="moodLabel" class="tag">Hoje</span></div>
+        <div class="mood" style="margin-top:12px">
+          <button onclick="setMood(1)">😞</button><button onclick="setMood(2)">😕</button><button onclick="setMood(3)">😐</button><button onclick="setMood(4)">🙂</button><button onclick="setMood(5)">😁</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row between"><div><h3>Jornada de 30 dias</h3><p class="muted">O teu progresso</p></div><b id="journeyPct">0%</b></div>
+        <div class="progress" style="margin-top:10px"><div id="journeyBar" style="width:0%"></div></div>
+        <button class="secondary" style="margin-top:12px;width:100%" onclick="show('journey')">Continuar jornada →</button>
+      </div>
+      <div class="grid2">
+        <div class="card"><div class="kpi" id="habitCount">0/3</div><p>hábitos hoje</p></div>
+        <div class="card"><div class="kpi" id="streak">0</div><p>dias de sequência 🔥</p></div>
+      </div>
+      <div class="card"><div class="quote" id="quote">“O teu valor não diminui só porque hoje estás a ter um dia difícil.”</div></div>
+    </section>
+
+    <section id="journey" class="screen">
+      <div class="top"><div><span class="tag">30 DIAS</span><h1>Jornada Recomeço</h1></div></div>
+      <p>Pequenos exercícios para desenvolver autoestima e autocuidado.</p>
+      <div id="days"></div>
+    </section>
+
+    <section id="diary" class="screen">
+      <div class="top"><div><span class="tag">ESPAÇO SEGURO</span><h1>Diário emocional</h1></div></div>
+      <div class="card">
+        <h3>O que estás a sentir?</h3>
+        <p class="muted">Escreve sem te julgares.</p>
+        <textarea id="journalText" placeholder="Hoje eu..."></textarea>
+        <button class="primary" style="margin-top:10px" onclick="saveJournal()">Guardar no meu diário</button>
+      </div>
+      <div id="journalList"></div>
+    </section>
+
+    <section id="habits" class="screen">
+      <div class="top"><div><span class="tag">AUTOCUIDADO</span><h1>Hábitos de hoje</h1></div></div>
+      <div class="card"><h3>Não procures perfeição.</h3><p>Marca os pequenos cuidados que conseguiste fazer.</p></div>
+      <div id="habitList"></div>
+    </section>
+
+    <section id="profile" class="screen">
+      <div class="top"><div><span class="tag">EU</span><h1>O meu perfil</h1></div></div>
+      <div class="card">
+        <div class="row"><div class="avatar" id="avatar">A</div><div><h2 id="profileName">Amigo</h2><p id="profileMeta">A tua jornada começa aqui.</p></div></div>
+        <label class="muted" style="display:block;margin-top:17px">Como queres ser chamado?</label>
+        <input id="nameInput" placeholder="O teu nome" maxlength="30">
+        <button class="primary" style="margin-top:10px" onclick="saveName()">Guardar</button>
+      </div>
+      <div class="card">
+        <h3>Recomeço IA 🤖</h3>
+        <p>Um espaço de reflexão. Nesta versão, as respostas são locais e pré-programadas.</p>
+        <button class="secondary" style="width:100%" onclick="openAI()">Conversar comigo</button>
+      </div>
+      <div class="card">
+        <h3>Privacidade e segurança</h3>
+        <p class="muted">Esta versão guarda os teus registos apenas no armazenamento local do navegador.</p>
+        <button class="ghost" onclick="clearData()">Apagar todos os meus dados</button>
+      </div>
+    </section>
+
+    <section id="ai" class="screen">
+      <div class="top"><div><span class="tag">REFLEXÃO</span><h1>Recomeço IA</h1></div><button class="iconbtn" onclick="show('profile')">×</button></div>
+      <div class="card"><p>Não sou substituto de um psicólogo ou médico. Posso ajudar-te a organizar pensamentos e encontrar um pequeno próximo passo.</p></div>
+      <div id="chat"></div>
+      <div class="card">
+        <textarea id="aiInput" placeholder="Escreve o que está a acontecer contigo..." style="min-height:90px"></textarea>
+        <button class="primary" style="margin-top:9px" onclick="sendAI()">Enviar</button>
+      </div>
+    </section>
+  </main>
+  <nav class="bottom">
+    <button data-screen="home" class="active" onclick="show('home')"><b>⌂</b>Início</button>
+    <button data-screen="journey" onclick="show('journey')"><b>◔</b>Jornada</button>
+    <button data-screen="diary" onclick="show('diary')"><b>✎</b>Diário</button>
+    <button data-screen="habits" onclick="show('habits')"><b>✓</b>Hábitos</button>
+    <button data-screen="profile" onclick="show('profile')"><b>☺</b>Perfil</button>
+  </nav>
+</div>
+
+<script>
+const KEY='recomeco_v4';
+const defaultData={name:'',mood:0,journals:[],habits:{},days:[],chat:[]};
+let data=JSON.parse(localStorage.getItem(KEY)||'null')||defaultData;
+const habits=[
+ ['agua','💧','Beber água','Cuidar da hidratação.'],
+ ['movimento','🚶','Mexer o corpo','5–20 minutos de caminhada ou alongamento.'],
+ ['sono','🌙','Preparar o sono','Desligar o ecrã e criar um momento calmo antes de dormir.']
+];
+const quotes=[
+ '“O teu valor não diminui só porque hoje estás a ter um dia difícil.”',
+ '“Pequenos passos repetidos também são progresso.”',
+ '“Falar contigo com respeito também é autocuidado.”',
+ '“Não precisas comparar o teu capítulo com o de outra pessoa.”'
+];
+const dayContent=[
+ 'Escreve 3 qualidades tuas, mesmo que pareçam pequenas.',
+ 'Faz uma coisa que te dá paz durante 10 minutos.',
+ 'Identifica um pensamento negativo e escreve uma alternativa mais justa.',
+ 'Cuida da tua aparência por ti, não pela aprovação dos outros.',
+ 'Faz uma caminhada curta e presta atenção à respiração.',
+ 'Escreve uma coisa difícil que já conseguiste superar.',
+ 'Descansa sem culpa por pelo menos 20 minutos.',
+ 'Diz “não” a uma coisa que realmente não queres fazer.',
+ 'Agradece a alguém que teve um impacto positivo em ti.',
+ 'Faz algo que tens adiado há pouco tempo.',
+ 'Passa 15 minutos longe das redes sociais.',
+ 'Escreve como gostarias de tratar um amigo que estivesse a passar pelo que passas.',
+ 'Escolhe uma preocupação e separa o que podes controlar do que não podes.',
+ 'Organiza um pequeno espaço à tua volta.',
+ 'Pratica 2 minutos de respiração lenta.',
+ 'Faz uma lista de 5 coisas que queres aprender.',
+ 'Celebra uma pequena vitória desta semana.',
+ 'Evita uma comparação que te faça mal.',
+ 'Come uma refeição com atenção, sem pressa.',
+ 'Faz algo criativo: escreve, desenha, canta ou cria.',
+ 'Pergunta a ti mesmo: “Do que preciso hoje?”',
+ 'Tenta dormir um pouco mais cedo.',
+ 'Recorda uma pessoa segura com quem podes falar.',
+ 'Escreve uma meta pequena para os próximos 7 dias.',
+ 'Faz uma atividade física que gostes.',
+ 'Perdoa-te por um erro que já não podes mudar.',
+ 'Escolhe uma frase de incentivo para repetires hoje.',
+ 'Repara numa coisa do teu corpo que te permite fazer algo útil.',
+ 'Escreve 3 sinais de que estás a evoluir.',
+ 'Escreve uma carta para o teu “eu” daqui a 3 meses.'
+];
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2200)}
+function startApp(){document.getElementById('welcome').classList.remove('show');document.getElementById('app').classList.remove('hide');save();render()}
+function show(id){
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));
+ window.scrollTo(0,0);render();
+}
+function setMood(n){data.mood=n;save();render();toast('Estado emocional guardado 💜')}
+function saveName(){const n=document.getElementById('nameInput').value.trim();data.name=n.slice(0,30);save();render();toast('Perfil atualizado')}
+function saveJournal(){const t=document.getElementById('journalText').value.trim();if(!t)return toast('Escreve alguma coisa primeiro.');data.journals.unshift({text:t,date:new Date().toLocaleString('pt-PT')});document.getElementById('journalText').value='';save();render();toast('Guardado no teu diário ✨')}
+function toggleHabit(id){data.habits[id]=!data.habits[id];save();render();toast(data.habits[id]?'Hábito concluído ✓':'Hábito desmarcado')}
+function completeDay(i){if(i>0 && !data.days.includes(i-1))return toast('Completa primeiro o dia anterior.');if(!data.days.includes(i))data.days.push(i);save();render();toast('Dia concluído! Continua assim 🌱')}
+function openAI(){show('ai');if(!data.chat.length){data.chat.push({from:'ai',text:'Olá. Estou aqui para te ouvir. O que está mais pesado para ti neste momento?'});save()}render()}
+function sendAI(){
+ const input=document.getElementById('aiInput'),t=input.value.trim();if(!t)return;
+ data.chat.push({from:'user',text:t});
+ const low=t.toLowerCase();
+ let r='Obrigado por partilhares isso. Tenta não resolver tudo de uma vez. Qual seria o menor passo que poderia tornar as próximas horas 1% melhores?';
+ if(/suicid|morrer|matar|não quero viver|nao quero viver|acabar com tudo/.test(low)){
+   r='Sinto muito que estejas a passar por uma dor tão intensa. Não fiques sozinho com isso. Procura agora uma pessoa de confiança e um serviço de urgência ou emergência da tua região. Se houver risco imediato de te magoares, afasta-te de objetos ou locais perigosos e procura ajuda presencial imediatamente.';
+ }else if(/ansios|ansiedade|pânico|panico/.test(low)){
+   r='Vamos diminuir o ritmo. Inspira pelo nariz durante 4 segundos, expira lentamente durante 6, e repete por 2 minutos. Depois diz-me: o que desencadeou essa ansiedade?';
+ }else if(/triste|deprim|sem vontade|solidão|solidao/.test(low)){
+   r='Não precisas fingir que está tudo bem. Escolhe uma pessoa segura e diz apenas: “Hoje não estou bem e precisava de companhia.” Depois faz um cuidado básico: água, comida, banho ou descanso.';
+ }else if(/autoestima|feio|feia|inútil|inutil|não valho|nao valho/.test(low)){
+   r='A tua autoestima não precisa depender de aparência ou aprovação. Experimenta separar “o que sinto sobre mim” de “o que é verdade sobre mim”. Escreve 2 capacidades ou atitudes tuas que demonstram valor.';
+ }
+ data.chat.push({from:'ai',text:r});input.value='';save();render();
+}
+function clearData(){if(confirm('Apagar todos os dados desta versão?')){localStorage.removeItem(KEY);location.reload()}}
+function render(){
+ const app=document.getElementById('app'); if(app.classList.contains('hide'))return;
+ document.getElementById('helloName').textContent=(data.name||'AMIGO').toUpperCase();
+ document.getElementById('profileName').textContent=data.name||'Amigo';
+ document.getElementById('profileMeta').textContent=data.name?'A tua jornada está em andamento.':'A tua jornada começa aqui.';
+ document.getElementById('nameInput').value=data.name||'';
+ document.getElementById('avatar').textContent=(data.name||'A')[0].toUpperCase();
+ const pct=Math.round(data.days.length/30*100);document.getElementById('journeyPct').textContent=pct+'%';document.getElementById('journeyBar').style.width=pct+'%';
+ const hc=habits.filter(x=>data.habits[x[0]]).length;document.getElementById('habitCount').textContent=hc+'/3';
+ let streak=0;for(let i=0;i<30;i++){if(data.days.includes(i))streak++;else break}document.getElementById('streak').textContent=streak;
+ document.getElementById('quote').textContent=quotes[new Date().getDate()%quotes.length];
+ document.querySelectorAll('.mood button').forEach((b,i)=>b.classList.toggle('sel',data.mood===i+1));
+ const days=document.getElementById('days');days.innerHTML='';
+ dayContent.forEach((text,i)=>{const done=data.days.includes(i),locked=i>0&&!data.days.includes(i-1);days.innerHTML+=`<div class="day ${done?'done':''} ${locked?'lock':''}"><div class="row between"><div><span class="tag">DIA ${i+1}</span><p style="margin-top:8px;color:var(--text);font-weight:650">${text}</p></div><button class="check" onclick="completeDay(${i})">${done?'✓':'→'}</button></div></div>`});
+ const hl=document.getElementById('habitList');hl.innerHTML=habits.map(x=>`<div class="card"><div class="row between"><div class="row"><div class="avatar" style="width:46px;height:46px;border-radius:15px;font-size:21px">${x[1]}</div><div><h3>${x[2]}</h3><p class="muted">${x[3]}</p></div></div><button class="check" onclick="toggleHabit('${x[0]}')">${data.habits[x[0]]?'✓':'+'}</button></div></div>`).join('');
+ const jl=document.getElementById('journalList');jl.innerHTML=data.journals.length?data.journals.map(j=>`<div class="card"><span class="tag">${j.date}</span><p style="white-space:pre-wrap;color:var(--text)">${escapeHtml(j.text)}</p></div>`).join(''):'<div class="card center"><p>Ainda não tens entradas. Este espaço é só teu.</p></div>';
+ const ch=document.getElementById('chat');ch.innerHTML=data.chat.map(m=>`<div class="card" style="${m.from==='user'?'margin-left:28px;background:var(--soft)':''}"><b>${m.from==='user'?(data.name||'Tu'):'Recomeço IA'}</b><p style="white-space:pre-wrap;color:var(--text)">${escapeHtml(m.text)}</p></div>`).join('');
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+if(localStorage.getItem(KEY)){document.getElementById('welcome').classList.remove('show');document.getElementById('app').classList.remove('hide');render()}else{document.getElementById('welcome').classList.add('show')}
+</script>
+</body>
+</html>

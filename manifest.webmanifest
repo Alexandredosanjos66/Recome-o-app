@@ -1,0 +1,15 @@
+{
+  "name": "Recomeço",
+  "short_name": "Recomeço",
+  "description": "Uma jornada de autoestima, autocuidado e bem-estar emocional.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f7fb",
+  "theme_color": "#6c63ff",
+  "lang": "pt",
+  "categories": [
+    "health",
+    "lifestyle"
+  ]
+}
