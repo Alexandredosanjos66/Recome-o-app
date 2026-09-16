@@ -24,7 +24,14 @@ jobs:
 
       - name: Adicionar Android
         run: npx cap add android
-
+        
+- name: Preparar arquivos web
+  run: |
+    mkdir -p www
+    cp index.html www/
+    cp manifest.webmanifest www/ 2>/dev/null || true
+    cp sw.js www/ 2>/dev/null || true
+    cp -r branding www/ 2>/dev/null || true
       - name: Sincronizar projeto
         run: npx cap sync android
 
