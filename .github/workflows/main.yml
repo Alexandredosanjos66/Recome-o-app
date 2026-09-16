@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: Instalar Capacitor Android
-        run: npm install @capacitor/android
+        run: run: npm install @capacitor/android@7.6.9
 
       - name: Adicionar Android
         run: npx cap add android
