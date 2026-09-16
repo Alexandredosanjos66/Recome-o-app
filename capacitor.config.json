@@ -1,11 +1,10 @@
+
 {
-  
   "appId": "com.recomeco.app",
   "appName": "Recomeço",
-  "webDir": "www"
-}
+  "webDir": "www",
   "backgroundColor": "#f7f7fb",
   "server": {
     "androidScheme": "https"
   }
-
+}
